@@ -1,0 +1,29 @@
+(define (domain university)
+   (:requirements :strips :typing)
+   (:types agent location trashcontent trashbin)
+   (:action move
+      :parameters (?p - agent ?l1 - location ?l2 - location)
+      :precondition (and (at ?p ?l1) (border ?l1 ?l2) (not (notready ?l2)))
+      :effect (and (at ?p ?l2) (not (at ?p ?l1)))
+   )
+   (:action pickup
+      :parameters (?p - agent ?c - trashbin ?l1 - location)
+      :precondition (and (at ?p ?l1) (at ?c ?l1) )
+      :effect (and (pickup ?c))
+   )
+   (:action collect-trash1
+      :parameters (?p - agent ?c - trashbin ?l1 - location ?e - trashcontent)
+      :precondition (and (at ?p ?l1) (at ?c ?l1) (pickup ?c) (trashbag1 ?e) (in ?e ?c) (not (empty ?c))
+      :effect (and (empty ?c) (has-trash1 ?p))
+   )
+   (:action collect-trash2
+      :parameters (?p - agent ?c - trashbin ?l1 - location ?e - trashcontent)
+      :precondition (and (at ?p ?l1) (at ?c ?l1) (pickup ?c) (trashbag2 ?e) (in ?e ?c) (not (empty ?c))
+      :effect (and (empty ?c) (has-trash2 ?p))
+   )
+   (:action finish-recollection
+      :parameters (?p - agent)
+      :precondition (and (has-trash1 ?p) (has-trash2 ?p))
+      :effect (and (has-collected-alltrash ?p) (not (has-trash1 ?p) not (has-trash2 ?p)))
+   )
+)

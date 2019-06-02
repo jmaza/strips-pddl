@@ -1,0 +1,38 @@
+(define (problem uni-01)
+   (:domain univeristy)
+   (:objects Cafeteria Mensa Hall Outside Stairs - room)
+   (:init
+
+    ;;; Note: this is a directed graph
+    (connected Cafeteria Mensa)
+    (connected Mensa Cafeteria)
+    (connected Hall Cafeteria)
+    (connected Cafeteria Hall)
+    (connected Hall Mensa)
+    (connected Mensa Hall)
+    (connected Outside Hall)
+    (connected Outside Mensa)
+    (connected Mensa Outside)
+    (connected Mensa Stairs)
+    (connected Stairs Mensa)
+    (connected Stairs Outside)
+    (connected Outside Stairs)
+    
+    ;;; start
+    (at Hall)
+   )
+
+   (:goal 
+       (and 
+        (at Hall)
+
+         (visited Cafeteria)
+         (visited Mensa)
+         (visited Hall)
+         (visited Outside)
+         (visited Stairs)
+
+        )
+
+       )
+)

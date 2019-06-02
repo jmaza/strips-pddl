@@ -1,0 +1,25 @@
+(define (problem trashbincollect)
+   (:domain university)
+   (:objects
+      collector - agent
+      hall cafeteria mensa stairs - location
+      bin1 bin2 bin3 bin4 - trashbin
+      bag1 bag2 - trashcontent
+   )
+   (:init
+      (border hall cafeteria)
+      (border cafeteria hall)
+      (border cafeteria mensa)
+      (border mensa cafeteria)
+      (border mensa stairs)
+      (border stairs mensa)
+      (at collector hall)
+      (at bin1 mensa)
+      (at bin2 stairs)
+      (trashbag1 bag1)
+      (in bag1 bin1)
+      (trashbag2 bag2)
+      (in bag2 bin2)
+   )
+   (:goal (and (has-collected-alltrash collector)))
+)

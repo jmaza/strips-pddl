@@ -1,0 +1,28 @@
+(define (domain univeristy)
+   (:requirements :strips)
+   (:types room)
+   (:action move
+             :parameters (?start ?end - room)
+             :precondition (and 
+                             (at ?start)
+                             ;;; This is a directed graph  -- We have start location and end location because we move
+                             (connected ?start ?end) 
+
+                             ;;; this should probably be included
+                             (not (visited ?end))
+
+                             ;;; if we want to avoid an empty trash bin:
+                             (not (empty ?end))  
+
+                             ;;; For undirected graphs:
+                             ;;; (or
+                             ;;;   (connected ?start ?end)
+                             ;;;   (connected ?end ?start))
+                             )
+             :effect  (and 
+                           (at ?end)
+                           (visited ?end)
+                           (not (at ?start)))
+    ) 
+
+)
