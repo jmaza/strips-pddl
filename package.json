@@ -9,7 +9,7 @@
     },
     "dependencies": {
         "d3": "3.*",
-        "jsdom": "9.12.0",
+        "jsdom": "16.5.0",
         "pegjs": "*",
         "strips": "file:strips",
         "xmldom": "*"
